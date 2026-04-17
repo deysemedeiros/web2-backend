@@ -39,23 +39,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* fundo estilo app */
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
 }
 
-/* card */
+/* CARD */
 .card {
     background: #fff;
     padding: 30px;
     width: 100%;
     max-width: 350px;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* icone topo */
+/* ÍCONE */
 .icon {
     width: 70px;
     height: 70px;
@@ -69,13 +71,18 @@ body {
     font-size: 28px;
 }
 
-/* titulo */
+/* TÍTULO */
 h2 {
     margin-bottom: 20px;
     color: #555;
 }
 
-/* inputs */
+/* FORM */
+form {
+    width: 100%;
+}
+
+/* INPUTS */
 input {
     width: 100%;
     padding: 12px;
@@ -85,20 +92,21 @@ input {
     background: #f2f2f2;
     outline: none;
     transition: 0.3s;
+    box-sizing: border-box;
 }
 
 input:focus {
-    background: #e6e6e6;
+    background: #e9e9e9;
 }
 
-/* botão */
+/* BOTÃO */
 button {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
     border: none;
     border-radius: 25px;
-    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -109,7 +117,7 @@ button:hover {
     opacity: 0.9;
 }
 
-/* mensagem */
+/* MENSAGEM */
 .msg {
     margin-top: 10px;
     font-size: 14px;
