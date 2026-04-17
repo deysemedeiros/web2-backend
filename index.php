@@ -1,28 +1,24 @@
 <?php
-// Inicialização das variáveis
 $nome = "";
 $email = "";
 $telefone = "";
 $mensagem = "";
 
-// Função para sanitizar entradas
 function limparEntrada($valor) {
     return htmlspecialchars(trim($valor));
 }
 
-// Verifica se houve envio via POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = limparEntrada($_POST["nome"] ?? "");
     $email = limparEntrada($_POST["email"] ?? "");
     $telefone = limparEntrada($_POST["telefone"] ?? "");
 
-    // Validação simples
     if (empty($nome) || empty($email) || empty($telefone)) {
-        $mensagem = "Por favor, preencha todos os campos.";
+        $mensagem = "Preencha todos os campos.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mensagem = "E-mail inválido.";
     } else {
-        $mensagem = "Dados recebidos com sucesso!";
+        $mensagem = "Sucesso!";
     }
 }
 ?>
@@ -30,130 +26,117 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema Web II</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f8e1e7, #eec9d2);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
+<title>Login</title>
 
-        .container {
-            background: #fff7f9;
-            padding: 30px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(180, 120, 140, 0.2);
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #8b5e6c;
-        }
+    /* fundo estilo app */
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
 
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-            color: #7a4f5d;
-        }
+/* card */
+.card {
+    background: #fff;
+    padding: 30px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #e4b7c2;
-            border-radius: 8px;
-            transition: 0.3s;
-            background: #fff;
-        }
+/* icone topo */
+.icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    border-radius: 50%;
+    margin: -60px auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+}
 
-        input:focus {
-            border-color: #d291a3;
-            outline: none;
-            box-shadow: 0 0 5px rgba(210, 145, 163, 0.5);
-        }
+/* titulo */
+h2 {
+    margin-bottom: 20px;
+    color: #555;
+}
 
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 8px;
-            background: #d291a3;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+/* inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: none;
+    background: #f2f2f2;
+    outline: none;
+    transition: 0.3s;
+}
 
-        button:hover {
-            background: #c27b8f;
-        }
+input:focus {
+    background: #e6e6e6;
+}
 
-        .mensagem {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-        }
+/* botão */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .erro {
-            background: #ffe6eb;
-            color: #a9445b;
-        }
+button:hover {
+    opacity: 0.9;
+}
 
-        .sucesso {
-            background: #e6fff0;
-            color: #5a8f6a;
-        }
-
-        .dados {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-    </style>
+/* mensagem */
+.msg {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #444;
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>🌸 Cadastro</h1>
 
-        <form method="POST">
-            <label>Nome</label>
-            <input type="text" name="nome" value="<?= $nome ?>" required>
+<div class="card">
+    <div class="icon">🔒</div>
 
-            <label>E-mail</label>
-            <input type="email" name="email" value="<?= $email ?>" required>
+    <h2>Conecte-se agora</h2>
 
-            <label>Telefone</label>
-            <input type="text" name="telefone" value="<?= $telefone ?>" required>
+    <form method="POST">
+        <input type="text" name="nome" placeholder="Nome" value="<?= $nome ?>">
+        <input type="email" name="email" placeholder="E-mail" value="<?= $email ?>">
+        <input type="text" name="telefone" placeholder="Telefone" value="<?= $telefone ?>">
 
-            <button type="submit">Enviar</button>
-        </form>
+        <button type="submit">ENTRAR</button>
+    </form>
 
-        <?php if (!empty($mensagem)): ?>
-            <div class="mensagem <?= $mensagem === "Dados recebidos com sucesso!" ? 'sucesso' : 'erro' ?>">
-                <?= $mensagem ?>
-            </div>
+    <?php if (!empty($mensagem)): ?>
+        <div class="msg"><?= $mensagem ?></div>
+    <?php endif; ?>
+</div>
 
-            <?php if ($mensagem === "Dados recebidos com sucesso!"): ?>
-                <div class="dados">
-                    <p><strong>Nome:</strong> <?= $nome ?></p>
-                    <p><strong>E-mail:</strong> <?= $email ?></p>
-                    <p><strong>Telefone:</strong> <?= $telefone ?></p>
-                </div>
-            <?php endif; ?>
-        <?php endif; ?>
-    </div>
 </body>
 </html>
